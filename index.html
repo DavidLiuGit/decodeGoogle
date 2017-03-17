@@ -20,14 +20,26 @@
 
 	<body ng-app='chatRoom'>	<!-- bind chatROom module to all of body -->
 
-		<div class="chatroom" ng-controller='chatController as chatCtrl'>	<!-- bind Controller -->
+		<div ng-controller='chatController as chatCtrl'>	<!-- bind Controller -->
+			<div class="chatroom">
+				<div ng-repeat='message in chatCtrl.messages'>					<!-- repeat message boxes -->
+					<!-- depending on the sender, stylize the message box -->
+					<div ng-class="{msgBox:message.sender==0,msgBoxUser:message.sender==1}" >
+						<p class="msgBody">{{message.msg}}</p>
+					</div>
+				</div>
+			</div>			<!-- end chatroom box -->
 
-
-			<div class="msgBox" ng-repeat='message in chatCtrl.messages'>
-				<p class="msgBody">{{message.msg}}</p>
+			<!-- text box line -->
+			<div class="userMsgLine">
+				<form name="userMsg">
+					<input name="newUserMsg" > </input>
+				</form>
 			</div>
 
 		</div>
+
+
 
 	</body>
 </html>
