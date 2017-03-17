@@ -1,0 +1,8 @@
+.chatroom {
+    margin: 30px 15%;
+    border-style: solid;
+    border-radius: 30px;
+    border-width: 1px;
+    border-color: #888888;
+    height: 600px;
+}
