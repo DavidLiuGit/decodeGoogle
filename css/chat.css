@@ -4,5 +4,15 @@
     border-radius: 30px;
     border-width: 1px;
     border-color: #888888;
-    height: 600px;
+    min-height: 600px;
+}
+
+.msgBox {
+    margin: 10px 15;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #993399;
+    padding: auto auto;
+    min-height: 30px;
 }
