@@ -5,14 +5,41 @@
 	<head>
 		<meta charset="utf-8">
 		<title>title</title>
-		<link rel="stylesheet" href="style.css">
-		<script src="script.js"></script>
+
+		<link href="css/chat.css" rel="stylesheet" type="text/css">
+
+		<!-- Bootsrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+		<!-- AngularJS -->
+		<script src="js/angular.min.js"></script>
+		<script src="js/chatNG.js"></script>
+
 	</head>
-	
-	<body>
-	
-    	<!-- page content -->
-    
+
+	<body ng-app='chatRoom'>	<!-- bind chatROom module to all of body -->
+
+		<div ng-controller='chatController as chatCtrl'>	<!-- bind Controller -->
+			<div class="chatroom">
+				<div ng-repeat='message in chatCtrl.messages'>					<!-- repeat message boxes -->
+					<!-- depending on the sender, stylize the message box -->
+					<div ng-class="{msgBox:message.sender==0,msgBoxUser:message.sender==1}" >
+						<p class="msgBody">{{message.msg}}</p>
+					</div>
+				</div>
+			</div>			<!-- end chatroom box -->
+
+			<!-- text box line -->
+			<div class="userMsgLine">
+				<form name="userMsg">
+					<input name="newUserMsg" > </input>
+				</form>
+			</div>
+
+		</div>
+
+
+
 	</body>
-	
 </html>
