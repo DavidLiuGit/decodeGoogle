@@ -21,4 +21,4 @@ def entities_text(text):
               entity.metadata.get('wikipedia_url', '-')))
 			  
 if __name__ == '__main__':
-	entities_text("Did you know Adam West is in Batman?")
+	entities_text("Let's go to montreal to hack with Google at deCODE!")
