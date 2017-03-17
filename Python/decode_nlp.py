@@ -1,6 +1,4 @@
 from google.cloud import language
-import json
-
 
 language_client = language.Client()
 
@@ -30,10 +28,7 @@ def analyze(text):
 	
 	data['entities'] = entitiesArr
 	
-	json_data = json.dumps(data)
-	
-	#print json_data
-	return json_data
+	return data
 	
 
 print(analyze("Hello from deCODE Hackathon in Montreal with Google!"))
