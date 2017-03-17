@@ -44,8 +44,9 @@ class S(BaseHTTPRequestHandler):
 		#Write response
 
 		self._set_headers()
-        #self.wfile.write("<html><body><h1>POST!"+str(nlp_output)+"</h1></body></html>")
-        self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+		self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+		#self.wfile.write("<html><body><h1>POST!"+str(nlp_output)+"</h1></body></html>")
+		
 		
 		
 def run(server_class=HTTPServer, handler_class=S, port=80):
