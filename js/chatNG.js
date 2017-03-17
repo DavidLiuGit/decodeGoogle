@@ -3,7 +3,13 @@
 
     // controller syntax:
 	app.controller ('chatController', function() {
-		this.messages = defaultMsgs;
+		this.messages = defaultMsgs;                    // set default msgs
+
+        this.addMsg = function (sender, msg){
+            var newMsg = {sender, msg};
+            this.messages.push( newMsg );
+        };
+
 	});
 
     var defaultMsgs = [

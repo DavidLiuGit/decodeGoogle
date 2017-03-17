@@ -1,18 +1,45 @@
+.msgBody {
+    font-size: 12pt;
+    margin: 5px 10px;
+    color: #222222;
+}
+
 .chatroom {
     margin: 30px 15%;
     border-style: solid;
     border-radius: 30px;
     border-width: 1px;
     border-color: #888888;
-    min-height: 600px;
+    min-height: 400px;
+    padding: 20px 20px;
 }
 
 .msgBox {
-    margin: 10px 15;
+    margin: 10px 20% 10px 3%;
     border-style: solid;
     border-radius: 5px;
     border-width: 1px;
-    border-color: #993399;
+    border-color: #d6f6f9;
     padding: auto auto;
     min-height: 30px;
+    background-color: #d6f6f9;
+}
+
+.msgBox:hover {
+    background-color: white;
+}
+
+.msgBoxUser {
+    margin: 10px 20% 10px 3%;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #e0e0e0;
+    padding: auto auto;
+    min-height: 30px;
+    background-color: #e0e0e0;
+}
+
+.msgBoxUser{
+    background-color: white;
 }
