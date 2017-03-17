@@ -31,21 +31,21 @@ class S(BaseHTTPRequestHandler):
 		content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
 		post_data = self.rfile.read(content_length) # <--- Gets the data itself
 
-        #Analyze sentence to get key words and sentiment
-        nlp_ouput = analyze(post_data) # format: {'text': '', 'sentiment': 0, 'entities':[]}
+		#Analyze sentence to get key words and sentiment
+		nlp_output = analyze(post_data) # format: {'text': '', 'sentiment': 0, 'entities':[]}
 
-        #Testing
-        print(nlp_ouput)
-
-
-        #Analyze keywords with knowledge graph
+		#Testing
+		print(nlp_output)
 
 
-        #Write response
+		#Analyze keywords with knowledge graph
 
-		
+
+		#Write response
+
 		self._set_headers()
-		self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+        #self.wfile.write("<html><body><h1>POST!"+str(nlp_output)+"</h1></body></html>")
+        self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 		
 		
 def run(server_class=HTTPServer, handler_class=S, port=80):
