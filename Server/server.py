@@ -25,6 +25,11 @@ class S(BaseHTTPRequestHandler):
 
 	def do_HEAD(self):
 		self._set_headers()
+
+	def do_OPTIONS(self):
+		self.send_response(200, "ok")
+		self.send_header('Access-Control-Allow-Origin', self.headers.dict['origin'])
+		self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
 		
 	def do_POST(self):
 		# Doesn't do anything with posted data
