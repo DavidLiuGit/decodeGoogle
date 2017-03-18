@@ -13,6 +13,7 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 from decode_nlp import analyze
 from graph import getGraph
+from jokeFinder import findJoke
 
 class S(BaseHTTPRequestHandler):
 	def _set_headers(self):
@@ -53,15 +54,12 @@ class S(BaseHTTPRequestHandler):
 
 		#Search joke database for joke
 		#TODO
-		joke = ""
+		joke = findJoke(nlp_output['entities'])
 		
 		#Write response
 
 		#self._set_headers()
 		#self.response.out.write(graph)
-		self.send_header('Access-Control-Allow-Origin', self.headers.dict['origin'])
-		self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
-		self.send_header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With')
 		self.send_header('Content-type', 'text/html')
 		self.send_response(200,{"graph":graph,"sentiment":nlp_output['sentiment'],"joke":joke})
 		#self.wfile.write("<html><body><h1>POST!</h1></body></html>")

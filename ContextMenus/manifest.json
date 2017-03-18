@@ -1,10 +1,11 @@
 {
-    "name": "App name",
+    "name": "SNASS",
     "version": "1.0",
     "manifest_version": 2,
-    "description": "Your description",
+    "description": "Providing quality converstation suggestions and jokes since 2017",
     "permissions": [
-      "contextMenus"
+      "contextMenus",
+      "http://localhost/"
      ],
     "background": { 
       "scripts": ["script.js"]

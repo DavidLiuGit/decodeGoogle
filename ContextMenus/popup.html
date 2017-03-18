@@ -1,39 +1,24 @@
-<!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
-<html>
-    <head>
-        <title>Getting Started Extension's Popup</title>
-            <style>
-                  body {
-                    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-                    font-size: 100%;
-                  }
-                  #status {
-                    /* avoid an excessively wide status text */
-                    white-space: pre;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    max-width: 400px;
-                  }
-            </style>
+<script src="angular.min.js"></script>		<!-- AngularJS -->
 
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
-        <script src="popup.js"></script>
+I'm having fun at decode with Google!
+<link href="popupStyle.css" rel="stylesheet" type="text/css">	<!-- style sheet -->
+<script src="popupNG.js"></script>		<!-- Angular module -->
 
-    </head>
-    <body>
-        <p> Popup window! </p>
-		<p id="debug">sample text</p>
+<div id="popup" class="boxFixed" > <!-- Main popup div; fixed to top-right corner -->
 
-		<script src="post.js"></script>
-    </body>
-</html>
+	<h3 id="header">Antisocial Social App</h3>
+
+	<div id="PopupBody" class="pBody" ng-app="popupModule" ng-controller="popupController">
+		<div id="Keyword" class="keyword" ng-repeat="kw in data.graph">
+			<p id="Desc" class="desc">{{kw[0].name}}: {{kw[0].description}}</p>
+		</div>
+	</div>
+
+	<p id="debug">debug element</p>
+
+	<button onclick="loadData('lol')">Click me</button>
+
+</div>
+
+
+<script src="debug.js"></script>
