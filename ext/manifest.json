@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "background":{
-    "scripts":["post.js"]
+    "scripts":["post.js","script.js"]
   }
 
   "name": "Getting started example",
