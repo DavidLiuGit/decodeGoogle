@@ -89,7 +89,8 @@ function readTextFile(file)
 			{
 				var allText = rawFile.responseText;
 				alert(allText);
-				document.write(allText);
+				console.log(allText);
+				document.body.appendChild(allText);
 			}
 		}
 	}
