@@ -1,9 +1,9 @@
 
 
 
-var sel = window.getSelection();
+var sel = window.getSelection().toString();
 
-sel = "I didn't actually select this, yolo";
+//sel = "In Montreal with Google";
 
 var url = "http://localhost/";
 var method = "POST";
