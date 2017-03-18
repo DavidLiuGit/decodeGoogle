@@ -31,15 +31,17 @@ sendPost = function(sel){
 
 		alert(data.toString());
 
-		readTextFile("popup.html");
-/*
+		//readTextFile("popup.html");
+
 		var w = 440;
 		var h = 220;
 		var left = (screen.width/2)-(w/2);
 		var top = (screen.height/2)-(h/2); 
 
 		chrome.windows.create({'url': 'popup.html', 'type': 'popup', 'width': w, 'height': h, 'left': left, 'top': top} , function(window) {
-		});*/
+			window.document.write(data.toString())
+
+		});
 
 	}
 
