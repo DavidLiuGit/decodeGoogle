@@ -12,6 +12,7 @@ Send a POST request::
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 from decode_nlp import analyze
+from graph import getGraph
 
 class S(BaseHTTPRequestHandler):
 	def _set_headers(self):
@@ -25,6 +26,11 @@ class S(BaseHTTPRequestHandler):
 
 	def do_HEAD(self):
 		self._set_headers()
+
+	def do_OPTIONS(self):
+		self.send_response(200, "ok")
+		self.send_header('Access-Control-Allow-Origin', self.headers.dict['origin'])
+		self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
 		
 	def do_POST(self):
 		# Doesn't do anything with posted data
@@ -39,8 +45,10 @@ class S(BaseHTTPRequestHandler):
 
 
 		#Analyze keywords with knowledge graph
+		graph = getGraph(nlp_output['entities'], 5)
 
-
+		print("Graph")
+		print(graph)
 		#Write response
 
 		self._set_headers()
@@ -52,7 +60,7 @@ class S(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=S, port=80):
 	server_address = ('', port)
 	httpd = server_class(server_address, handler_class)
-	print 'Starting httpd...'
+	print 'Starting https...'
 	httpd.serve_forever()
 
 if __name__ == "__main__":
