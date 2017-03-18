@@ -23,12 +23,23 @@ sendPost = function(sel){
 	request.onload = function() {
 		var status = request.status; // HTTP response status, e.g., 200 for "200 OK"
 		var data = request.responseText; // Returned data, e.g., an HTML document.
+		
 		console.log(data);
 		//alert("Onload");
 
 		// Convert response to html
 		//
+		data = data.toString()
 
+		//Parse string for alert
+		jsonData = data.substring(data.indexOf('{'),data.lastIndexOf('}') +1)
+		console.log(jsonData)
+
+		var obj = JSON.parse(jsonData)
+		var str = parseObj(obj);
+		
+		alert(str)
+/*
 		alert(data.toString());
 
 		//readTextFile("popup.html");
@@ -41,7 +52,7 @@ sendPost = function(sel){
 		chrome.windows.create({'url': 'popup.html', 'type': 'popup', 'width': w, 'height': h, 'left': left, 'top': top} , function(window) {
 			window.document.write(data.toString())
 
-		});
+		});*/
 
 	}
 
@@ -97,4 +108,54 @@ function readTextFile(file)
 		}
 	}
 	rawFile.send(null);
+}
+
+parseObj = function(obj){
+	var formattedStr = ""
+
+	formattedStr += parseGraph(obj.graph)
+	formattedStr += parseSentiment(obj.sentiment)
+	formattedStr += parseJoke(obj.joke)
+
+	return formattedStr
+}
+
+parseGraph = function(obj){
+	//var toReturn = obj.toString() + "\n"
+	obj = JSON.parse(obj)
+	var toReturn = ""
+	
+	for (var item in obj){
+		if(obj.hasOwnProperty(item)) {
+			toReturn += "Key word: "
+			toReturn += item + "\n"
+
+			toReturn += parseKeyWord(obj[item])
+
+			//toReturn += obj[item]
+		}
+	}
+	return toReturn +"\n"
+
+}
+
+parseKeyWord = function(obj){
+	var text = ""
+	text += "     Description: " + obj["description"] + "\n"
+	text += "     Fun facts: " + "\n"
+	return text
+}
+
+parseSentiment = function(num){
+	if(num < -0.3){
+		return "This message seems negative.\n"
+	}else if(num < 0.3){
+		return "This message seems neutral.\n"
+	}else{
+		return "This message seems positive.\n"
+	}
+}
+
+parseJoke = function(joke){
+	return joke + "\n"
 }

@@ -14,6 +14,7 @@ import SocketServer
 from decode_nlp import analyze
 from graph import getGraph
 from jokeFinder import findJoke
+import json
 
 class S(BaseHTTPRequestHandler):
 	def _set_headers(self):
@@ -61,7 +62,8 @@ class S(BaseHTTPRequestHandler):
 		#self._set_headers()
 		#self.response.out.write(graph)
 		self.send_header('Content-type', 'text/html')
-		self.send_response(200,{"graph":graph,"sentiment":nlp_output['sentiment'],"joke":joke})
+		obj = {"graph":graph,"sentiment":nlp_output['sentiment'],"joke":joke}
+		self.send_response(200,json.dumps(obj))
 		#self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 		#self.wfile.write("<html><body><h1>POST!"+str(nlp_output)+"</h1></body></html>")
 		self.end_headers
