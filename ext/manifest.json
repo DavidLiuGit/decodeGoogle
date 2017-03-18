@@ -1,6 +1,10 @@
 {
   "manifest_version": 2,
 
+  "background":{
+    "scripts":["post.js"]
+  }
+
   "name": "Getting started example",
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
@@ -11,6 +15,7 @@
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+    "contextMenu"
   ]
 }
