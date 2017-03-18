@@ -47,7 +47,7 @@ class S(BaseHTTPRequestHandler):
 
 
 		#Analyze keywords with knowledge graph
-		graph = getGraph(nlp_output['entities'], 5)
+		graph = getGraph(nlp_output['entities'])
 
 		#print("Graph")
 		#print(graph)
