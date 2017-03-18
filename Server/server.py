@@ -12,6 +12,7 @@ Send a POST request::
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 from decode_nlp import analyze
+from graph import getGraph
 
 class S(BaseHTTPRequestHandler):
 	def _set_headers(self):
@@ -44,8 +45,10 @@ class S(BaseHTTPRequestHandler):
 
 
 		#Analyze keywords with knowledge graph
+		graph = getGraph(nlp_output['entities'], 5)
 
-
+		print("Graph")
+		print(graph)
 		#Write response
 
 		self._set_headers()
