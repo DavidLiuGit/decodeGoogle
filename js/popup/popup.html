@@ -1,8 +1,24 @@
-<div id="popup" class="boxFixed"> <!-- Main popup div; fixed to top-right corner -->
-	<link href="popupStyle.css" rel="stylesheet" type="text/css">	<!-- style sheet -->
+<script src="../../js/angular.min.js"></script>		<!-- AngularJS -->
 
-	<h3 id="header"> Antisocial Social App</h3>
+I'm having fun at decode with Google!
+<link href="popupStyle.css" rel="stylesheet" type="text/css">	<!-- style sheet -->
+<script src="popupNG.js"></script>		<!-- Angular module -->
 
-	
+<div id="popup" class="boxFixed" > <!-- Main popup div; fixed to top-right corner -->
+
+	<h3 id="header">Antisocial Social App</h3>
+
+	<div id="PopupBody" class="pBody" ng-app="popupModule" ng-controller="popupController">
+		<div id="Keyword" class="keyword" ng-repeat="kw in data.graph">
+			<p id="Desc" class="desc">{{kw[0].name}}: {{kw[0].description}}</p>
+		</div>
+	</div>
+
+	<p id="debug">debug element</p>
+
+	<button onclick="loadData('lol')">Click me</button>
 
 </div>
+
+
+<script src="debug.js"></script>
