@@ -1,6 +1,6 @@
 ## load_ext signature
 ## matplotlib inline
-
+import random
 import requests
 import pprint as pp
 import json
@@ -10,7 +10,7 @@ def extractID(url):
 
 ## mid = '/m/01kmd4'
 mid = '/m/07dfk'
-def wikiDATA(mid):
+def data(mid):
 ##Search Query for topic based on mid
 
     numProperties = 100
@@ -30,11 +30,7 @@ def wikiDATA(mid):
     entity = extractID(data['results']['bindings'][0]['entity']['value'])
     isWhat = extractID(data['results']['bindings'][0]['isWhat']['value'])
 
-## print(entity)
-## print(isWhat)
-
-##Search Query based on Human Being\
-## if isWhat == "Q5":
+:## Based on the Query find all connections. 
     query = '''
            PREFIX entity: <http://www.wikidata.org/entity/>
            SELECT ?propUrl ?propLabel ?valUrl ?valLabel ?picture
@@ -54,12 +50,11 @@ def wikiDATA(mid):
         }
         ORDER BY ?propUrl ?valUrl
         LIMIT %d''' % (entity, numProperties)
-    ## print(query)
     
     url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     data = requests.get(url, params={'query': query, 'format': 'json'}).json()
 
-## Process of filtering it to have unique facts on a person
+## Process of filtering it to have unique facts on topic
     bindings = data['results']['bindings']
     organizedBindings = {}
     for binding in bindings:
@@ -72,10 +67,18 @@ def wikiDATA(mid):
 
     for x in organizedBindings:
         organizedBindings[x] = list(organizedBindings[x])
-
 ## Pretty print of JSON
-    pp.pprint(organizedBindings)
 
+    ## pp.pprint(organizedBindings)
+
+##Finding fun facts
+    funFacts = {}
+    for i in range(2):
+        key = random.choice(organizedBindings.keys())
+        value = organizedBindings[key]
+        funFacts[key] = value
+        
+    pp.pprint(funFacts)
     jsonResult = json.dumps(organizedBindings)
-## print(type(jsonResult))
-## print(jsonResult)
+    funFactsJSON = json.dumps(funFacts)
+    return funFactsJSON
