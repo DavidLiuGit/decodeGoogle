@@ -30,7 +30,7 @@ def data(mid):
     entity = extractID(data['results']['bindings'][0]['entity']['value'])
     isWhat = extractID(data['results']['bindings'][0]['isWhat']['value'])
 
-:## Based on the Query find all connections. 
+## Based on the Query find all connections. 
     query = '''
            PREFIX entity: <http://www.wikidata.org/entity/>
            SELECT ?propUrl ?propLabel ?valUrl ?valLabel ?picture
