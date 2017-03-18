@@ -21,5 +21,6 @@ def findJoke(keywords):
     for keyword in keywords:
         if keyword in jokesDict:
             jokeOccurences.extend(jokesDict[keyword])
-    print(jokeOccurences)
+    if not jokeOccurences:
+        return None
     return jokes[Counter(jokeOccurences).most_common(1)[0][0]]
