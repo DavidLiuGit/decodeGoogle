@@ -17,10 +17,10 @@ def graphRes(keyword, maxEdges):
    
     for element in range(0, len(response['itemListElement'])):
         try:
-            if (response['itemListElement'][element]['result']['detailedDescription']): 
+            if (response['itemListElement'][element]['result']['description']): 
                 graph[response['itemListElement'][element]['result']['name']] = {
                     'id': response['itemListElement'][element]['result']['@id'],
-                    'detailedDescription': response['itemListElement'][element]['result']['detailedDescription']['articleBody']
+                    'description': response['itemListElement'][element]['result']['description']
                 }
         except KeyError: 
             continue

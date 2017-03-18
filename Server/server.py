@@ -31,7 +31,8 @@ class S(BaseHTTPRequestHandler):
 		self.send_response(200, "ok")
 		self.send_header('Access-Control-Allow-Origin', self.headers.dict['origin'])
 		self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
-		
+		self.send_header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With')
+
 	def do_POST(self):
 		# Doesn't do anything with posted data
 		content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
@@ -47,14 +48,25 @@ class S(BaseHTTPRequestHandler):
 		#Analyze keywords with knowledge graph
 		graph = getGraph(nlp_output['entities'], 5)
 
-		print("Graph")
-		print(graph)
+		#print("Graph")
+		#print(graph)
+
+		#Search joke database for joke
+		#TODO
+		joke = ""
+		
 		#Write response
 
-		self._set_headers()
-		self.wfile.write("<html><body><h1>POST!</h1></body></html>")
+		#self._set_headers()
+		#self.response.out.write(graph)
+		self.send_header('Access-Control-Allow-Origin', self.headers.dict['origin'])
+		self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+		self.send_header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With')
+		self.send_header('Content-type', 'text/html')
+		self.send_response(200,{"graph":graph,"sentiment":nlp_output['sentiment'],"joke":joke})
+		#self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 		#self.wfile.write("<html><body><h1>POST!"+str(nlp_output)+"</h1></body></html>")
-		
+		self.end_headers
 		
 		
 def run(server_class=HTTPServer, handler_class=S, port=80):
