@@ -37,6 +37,7 @@ def getGraph(queries):
     graph = {}
     for keyword in queries:
         graph[keyword] = graphRes(keyword, 1)
+    print graph
 
     k = 'ID'
     IDList = []
@@ -56,8 +57,9 @@ def getGraph(queries):
     response = {} 
     for q in queries: 
         layer = graph.get(q, {})
-        description = layer.get(q, {})
+        description = layer.itervalues().next()
         funFacts = wikiFacts.get(q, {})
+        #print funFacts
 
         temp = {}
         temp['description'] = description.get('description')
@@ -69,10 +71,10 @@ def getGraph(queries):
     return responseJSON 
 
 
-#if __name__ == "__main__": #or make this into a method 
-    #queries = ["Uncle Buck", "Taylor Swift", "Google"] # enter in the queries 
-    #response = getGraph(queries) 
-    #print response
+if __name__ == "__main__": #or make this into a method 
+    queries = ["apple"] # enter in the queries 
+    response = getGraph(queries) 
+    print response
 
     
 
