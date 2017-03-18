@@ -16,14 +16,24 @@ def graphRes(keyword, maxEdges):
     response = json.loads(urllib.urlopen(url).read())
    
     for element in range(0, len(response['itemListElement'])):
-        graph[response['itemListElement'][element]['result']['name']] = {
-            'id': response['itemListElement'][element]['result']['@id'],
-            'detailedDescription': response['itemListElement'][element]['result']['detailedDescription']['articleBody']
-        }
+        try:
+            if (response['itemListElement'][element]['result']['detailedDescription']): 
+                graph[response['itemListElement'][element]['result']['name']] = {
+                    'id': response['itemListElement'][element]['result']['@id'],
+                    'detailedDescription': response['itemListElement'][element]['result']['detailedDescription']['articleBody']
+                }
+        except KeyError: 
+            continue
     return graph
 
-def getGraph(queryies, maxEdges):
+
+def getGraph(queries, maxEdges):
     graph = {}
-    for keyword in queryies:
+    for keyword in queries:
         graph[keyword] = graphRes(keyword, maxEdges)
     return graph
+
+if __name__ == "__main__":
+    queries = ["Uncle Buck"]
+    response = getGraph(queries, 5)
+    print response
