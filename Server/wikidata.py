@@ -27,6 +27,10 @@ def data(mid):
     url = 'https://query.wikidata.org/bigdata/namespace/wdq/sparql'
     data = requests.get(url, params={'query': query, 'format': 'json'}).json()
 
+    print data['results']
+    if(mid[:2] == "/g" or not data['results']['bindings']):
+        return json.dumps("")
+
     entity = extractID(data['results']['bindings'][0]['entity']['value'])
     isWhat = extractID(data['results']['bindings'][0]['isWhat']['value'])
 
