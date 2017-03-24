@@ -18,7 +18,9 @@ def graphRes(keyword, maxEdges):
     url = service_url + '?' + urllib.urlencode(params)
     response = json.loads(urllib.urlopen(url).read())
 
-    mID = response['itemListElement'][0]['result']['@id']
+    mID = 0;
+    if (len(response['itemListElement']) > 0):
+        mID = response['itemListElement'][0]['result']['@id']
    
     for element in range(0, len(response['itemListElement'])):
         try:
@@ -48,10 +50,11 @@ def getGraph(queries):
     wikiFacts = {}
     i = 0
     for ID in IDList: 
-        IDcut = ID[3:]
-        #print IDcut 
-        wikiFacts[queries[i]] = data(IDcut)
-        i += 1
+        if (isinstance(ID, list) and len(ID) > 3):
+            IDcut = ID[3:]
+            #print IDcut 
+            wikiFacts[queries[i]] = data(IDcut)
+            i += 1
 
     #package everything together 
     response = {} 
@@ -62,7 +65,8 @@ def getGraph(queries):
         #print funFacts
 
         temp = {}
-        temp['description'] = description.get('description')
+        if (isinstance(description, dict)):
+            temp['description'] = description.get('description')
         temp['funfacts'] = funFacts
 
         response[q] = temp
